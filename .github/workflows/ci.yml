@@ -247,21 +247,18 @@ jobs:
             toolset: "clang"
             compiler: "clang++-4.0"
             cxxstd: "c++14"
-#
-# There may be an incompatibility between certain combinations of clang-3/4, and Github Actions.
-# 
-#           - name: "TOOLSET=clang COMPILER=clang++-4.0 CXXSTD=c++ Job 19"
-#             buildtype: "boost"
-#             packages: "clang-4.0"
-#             packages_to_remove: ""
-#             os: "ubuntu-16.04"
-#             cxx: "clang++-4.0"
-#             sources: ""
-#             llvm_os: "xenial"
-#             llvm_ver: "4.0"
-#             toolset: "clang"
-#             compiler: "clang++-4.0"
-#             cxxstd: "c++1z"
+          - name: "TOOLSET=clang COMPILER=clang++-4.0 CXXSTD=c++ Job 19"
+            buildtype: "boost"
+            packages: "clang-4.0"
+            packages_to_remove: ""
+            os: "ubuntu-16.04"
+            cxx: "clang++-4.0"
+            sources: ""
+            llvm_os: "xenial"
+            llvm_ver: "4.0"
+            toolset: "clang"
+            compiler: "clang++-4.0"
+            cxxstd: "c++1z"
 
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container }}
@@ -286,6 +283,7 @@ jobs:
           COMPILER: ${{ matrix.compiler }}
           CXXSTD: ${{ matrix.cxxstd }}
           TRAVIS_BRANCH: ${{ github.base_ref }}
+          TRAVIS_OS_NAME: "linux"
         run: |
           echo '==================================> SETUP'
           BOOST_CI_ORG=boostorg BOOST_CI_BRANCH=master && wget https://github.com/$BOOST_CI_ORG/boost-ci/archive/$BOOST_CI_BRANCH.tar.gz && tar -xvf $BOOST_CI_BRANCH.tar.gz && mkdir -p .github &&  mv boost-ci-$BOOST_CI_BRANCH .github/boost-ci
@@ -440,6 +438,7 @@ jobs:
           COMPILER: ${{ matrix.compiler }}
           CXXSTD: ${{ matrix.cxxstd }}
           TRAVIS_BRANCH: ${{ github.base_ref }}
+          TRAVIS_OS_NAME: "osx"
         run: |
           echo '==================================> SETUP'
           set -ex
